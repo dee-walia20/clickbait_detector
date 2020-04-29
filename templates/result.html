@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+  
+</head>
+
+<body>
+ <div class="result">
+	<h1 style="text-align: left">RESULTS</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+        
+    {% if prediction == 1 %}
+    <h2 style="color:white"> This headline is a Cickbait</h2>
+    {% elif prediction == 0 %}
+    <h2 style="color:white">This headline is Relevant</h2>
+    {% endif %}
+
+ </div>
+
+</body>
+</html>
