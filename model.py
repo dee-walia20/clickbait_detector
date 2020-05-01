@@ -5,7 +5,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 import nltk
 import re
 from nltk.stem import WordNetLemmatizer
-from nltk.corpus import wordnet,stopwords
+from nltk.corpus import wordnet, stopwords
 from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -30,6 +30,7 @@ class TextPreprocessor(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         if self.token:
             nltk.download('averaged_perceptron_tagger')
+            nltk.download('wordnet')
             X=X.apply(lambda x: re.sub('\d+',"",x))
             X=X.apply(lambda x: re.sub('\W'," ",x))
             X=X.apply(lambda x: re.sub("  "," ",x))
