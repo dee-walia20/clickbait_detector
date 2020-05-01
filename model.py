@@ -29,12 +29,15 @@ class TextPreprocessor(BaseEstimator, TransformerMixin):
     
     def transform(self, X, y=None):
         if self.token:
+            nltk.download('averaged_perceptron_tagger')
             X=X.apply(lambda x: re.sub('\d+',"",x))
             X=X.apply(lambda x: re.sub('\W'," ",x))
             X=X.apply(lambda x: re.sub("  "," ",x))
             X=X.apply(lambda x: x.lower())
             self.lemmatizer=WordNetLemmatizer()
+            nltk.download("stopwords")
             self.stopwords=stopwords.words('english')
+            nltk.download('wordnet')
             X=X.apply(lambda x: " ".join([self.lemmatizer.lemmatize(word, self._get_wordnet_pos(word)) 
                           for word in x.split() if word not in self.stopwords]))
         return X
