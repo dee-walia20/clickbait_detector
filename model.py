@@ -37,7 +37,6 @@ class TextPreprocessor(BaseEstimator, TransformerMixin):
             self.lemmatizer=WordNetLemmatizer()
             nltk.download("stopwords")
             self.stopwords=stopwords.words('english')
-            nltk.download('wordnet')
             X=X.apply(lambda x: " ".join([self.lemmatizer.lemmatize(word, self._get_wordnet_pos(word)) 
                           for word in x.split() if word not in self.stopwords]))
         return X
