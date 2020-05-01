@@ -1,2 +1,2 @@
-worker: celery --app="task" --loglevel=info --concurrency=1 worker
+worker: celery worker --app=tasks.app
 web: python app.py
