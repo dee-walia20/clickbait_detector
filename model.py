@@ -5,7 +5,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 import nltk
 import re
 from nltk.stem import WordNetLemmatizer
-from nltk.corpus import wordnet
+from nltk.corpus import wordnet,stopwords
 from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -34,7 +34,7 @@ class TextPreprocessor(BaseEstimator, TransformerMixin):
             X=X.apply(lambda x: re.sub("  "," ",x))
             X=X.apply(lambda x: x.lower())
             self.lemmatizer=WordNetLemmatizer()
-            self.stopwords=nltk.corpus.stopwords.words('english')
+            self.stopwords=stopwords.words('english')
             X=X.apply(lambda x: " ".join([self.lemmatizer.lemmatize(word, self._get_wordnet_pos(word)) 
                           for word in x.split() if word not in self.stopwords]))
         return X
