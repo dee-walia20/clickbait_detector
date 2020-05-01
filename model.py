@@ -61,7 +61,7 @@ pipeline=make_pipeline(tp,tf,model)
 pipeline.fit(X_train, y_train)
 
 # Saving model to disk
-pickle.dump(pipeline, open('pipeline.pkl','wb'))
+pickle.dump(pipeline, open('pipeline.pkl','wb'), protocol=-1)
 
 # Loading model to check performance on Test set
 
